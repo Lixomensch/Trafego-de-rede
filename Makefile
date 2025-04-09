@@ -5,6 +5,9 @@ include .env
 server:
 	python src/backend/app.py
 
+client:
+	streamlit run src/frontend/streamlit_app.py
+
 #* Git Rules
 isort:
 	isort --settings-path=$(MAKE_CONFIG_FILE) $(FORMAT_CHECK_SRC)
