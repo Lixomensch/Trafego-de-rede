@@ -21,8 +21,8 @@ jobs:
 
       - name: Run pylint
         run: |
-          pylint --rcfile=config/lint/.pylintrc inari/
+          pylint --rcfile=config/lint/.pylintrc Trafego-de-rede/
 
       - name: Run isort
         run: |
-          isort --settings-path=config/lint/setup-lint.cfg inari/
+          isort --settings-path=config/lint/setup-lint.cfg Trafego-de-rede/
