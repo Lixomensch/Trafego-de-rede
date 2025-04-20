@@ -1,6 +1,11 @@
 """Database module for the backend application."""
 
 import sqlite3
+import os
+
+DB_DIR = os.path.join(os.path.dirname(__file__), "data")
+os.makedirs(DB_DIR, exist_ok=True)
+DB_PATH = os.path.join(DB_DIR, "devices.db")
 
 
 def init_db():
@@ -15,7 +20,7 @@ def init_db():
     - name (str): Name of the device
     - traffic_rate (float): Traffic rate of the device
     """
-    conn = sqlite3.connect("devices.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -43,7 +48,7 @@ def insert_device(ip, name, traffic_rate):
     Returns:
     None
     """
-    conn = sqlite3.connect("devices.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute(
         "INSERT INTO devices (ip, name, traffic_rate) VALUES (?, ?, ?)",
@@ -64,7 +69,7 @@ def get_all_devices():
     - name (str): Name of the device
     - traffic_rate (float): Traffic rate of the device
     """
-    conn = sqlite3.connect("devices.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT id, ip, name, traffic_rate FROM devices")
     devices = [
@@ -85,7 +90,7 @@ def delete_device_db(device_id):
     Returns:
     None
     """
-    conn = sqlite3.connect("devices.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("DELETE FROM devices WHERE id = ?", (device_id,))
     conn.commit()
