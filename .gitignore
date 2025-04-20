@@ -3,7 +3,6 @@
 *.log
 *.csv
 *.text
-*.txt
 *.tmp
 *.env
 *.db
