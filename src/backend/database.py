@@ -1,7 +1,7 @@
 """Database module for the backend application."""
 
-import sqlite3
 import os
+import sqlite3
 
 DB_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DB_DIR, exist_ok=True)
